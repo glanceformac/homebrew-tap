@@ -1,6 +1,6 @@
 cask "glance" do
-  version "1.0.0"
-  sha256 "14f1ac6e5c27c3b5a0524d0ce6703a9d9ae87030f943fa72c7b589713824ba60"
+  version "1.1.0"
+  sha256 "b837574c0954b613089da93b6d2ca1d98bd99bb5319bb479ae99a05f331a257b"
 
   url "https://github.com/glanceformac/glance/releases/download/v#{version}/Glance.zip"
   name "Glance for Mac"
@@ -12,7 +12,9 @@ cask "glance" do
     strategy :github_latest
   end
 
-  depends_on macos: :sonoma
+  # Glance updates itself (Sparkle) from 1.1.0 on, so brew does not fight the in-app updater.
+  auto_updates true
+  depends_on macos: ">= :sonoma"
 
   app "Glance.app"
 
